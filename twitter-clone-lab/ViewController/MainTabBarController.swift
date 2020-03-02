@@ -10,10 +10,21 @@ import UIKit
 
 class MainTabBarController: UITabBarController
 {
+    // MARK: - Lifecycle
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
-        view.backgroundColor = .systemGray2
+        //
+        view.backgroundColor = .systemBackground
+        //
+        setupViews()
+    }
+    
+    // MARK: - Setup Views
+    func setupViews()
+    {
+        let feed = FeedViewController()
+        
+        viewControllers = [feed]
     }
 }
