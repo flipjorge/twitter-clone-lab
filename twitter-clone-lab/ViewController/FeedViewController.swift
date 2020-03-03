@@ -15,6 +15,19 @@ class FeedViewController: UIViewController
     {
         super.viewDidLoad()
         //
+        setupViews()
+    }
+    
+    
+    // MARK: - Views
+    func setupViews()
+    {
+        //background
         view.backgroundColor = .systemGray
+        
+        //title
+        let iconView = UIImageView(image: UIImage(named: "twitter-480"))
+        iconView.contentMode = .scaleAspectFit
+        navigationItem.titleView = iconView
     }
 }
