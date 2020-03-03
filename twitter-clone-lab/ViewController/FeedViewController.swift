@@ -16,6 +16,8 @@ class FeedViewController: UIViewController
         super.viewDidLoad()
         //
         view.backgroundColor = .systemGray
+        //
+        setupTabBar()
     }
     
     //MARK: - Tab Bar
