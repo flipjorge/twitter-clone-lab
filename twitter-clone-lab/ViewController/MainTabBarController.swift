@@ -15,13 +15,13 @@ class MainTabBarController: UITabBarController
     {
         super.viewDidLoad()
         //
-        view.backgroundColor = .systemBackground
-        //
+        setupViewsController()
         setupViews()
     }
     
-    // MARK: - Setup Views
-    func setupViews()
+    
+    // MARK: - Setup Views Controllers
+    func setupViewsController()
     {
         let feed = navigationController(with: FeedViewController(),
                                         tabBarImage: UIImage(systemName: "house"),
@@ -42,4 +42,28 @@ class MainTabBarController: UITabBarController
         //
         return navController
     }
+    
+    
+    // MARK: - Setup Views
+    func setupViews()
+    {
+        //tab bar
+        tabBar.tintColor = .mainBlue
+        
+        //action button
+        view.addSubview(actionButton)
+        actionButton.sizeAnchor(width: 56, height: 56)
+        actionButton.positionAnchor(right: view.rightAnchor, rightMargin: 16, bottom: view.safeAreaLayoutGuide.bottomAnchor, bottomMargin: 64)
+        actionButton.layer.cornerRadius = 56 / 2
+    }
+    
+    
+    // MARK: - Action Button
+    let actionButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.tintColor = .white
+        button.backgroundColor = .mainBlue
+        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        return button
+    }()
 }
