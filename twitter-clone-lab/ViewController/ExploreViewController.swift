@@ -15,6 +15,17 @@ class ExploreViewController: UIViewController
     {
         super.viewDidLoad()
         //
+        setupViews()
+    }
+    
+    
+    // MARK: - Views
+    func setupViews()
+    {
+        //background
         view.backgroundColor = .systemGray2
+        
+        //title
+        navigationItem.title = "Explore"
     }
 }
