@@ -15,6 +15,7 @@
 		275C6487240DD071006EC9D9 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C6486240DD071006EC9D9 /* FeedViewController.swift */; };
 		275C6489240DD41F006EC9D9 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C6488240DD41F006EC9D9 /* ExploreViewController.swift */; };
 		275C648C240F1587006EC9D9 /* UIView+Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C648B240F1587006EC9D9 /* UIView+Anchor.swift */; };
+		275C648E240F20F6006EC9D9 /* UIColor+ProjectColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C648D240F20F6006EC9D9 /* UIColor+ProjectColors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		275C6486240DD071006EC9D9 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		275C6488240DD41F006EC9D9 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		275C648B240F1587006EC9D9 /* UIView+Anchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Anchor.swift"; sourceTree = "<group>"; };
+		275C648D240F20F6006EC9D9 /* UIColor+ProjectColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ProjectColors.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				275C648B240F1587006EC9D9 /* UIView+Anchor.swift */,
+				275C648D240F20F6006EC9D9 /* UIColor+ProjectColors.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				275C648C240F1587006EC9D9 /* UIView+Anchor.swift in Sources */,
+				275C648E240F20F6006EC9D9 /* UIColor+ProjectColors.swift in Sources */,
 				275C6470240DC744006EC9D9 /* AppDelegate.swift in Sources */,
 				275C6472240DC744006EC9D9 /* SceneDelegate.swift in Sources */,
 				275C6489240DD41F006EC9D9 /* ExploreViewController.swift in Sources */,
