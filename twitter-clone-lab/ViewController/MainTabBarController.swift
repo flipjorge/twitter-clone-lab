@@ -24,7 +24,8 @@ class MainTabBarController: UITabBarController
     func setupViews()
     {
         let feed = FeedViewController()
+        let explore = ExploreViewController()
         
-        viewControllers = [feed]
+        viewControllers = [feed, explore]
     }
 }

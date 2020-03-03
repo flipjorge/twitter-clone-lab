@@ -13,6 +13,7 @@
 		275C647C240DC748006EC9D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 275C647A240DC748006EC9D9 /* LaunchScreen.storyboard */; };
 		275C6485240DC881006EC9D9 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C6484240DC881006EC9D9 /* MainTabBarController.swift */; };
 		275C6487240DD071006EC9D9 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C6486240DD071006EC9D9 /* FeedViewController.swift */; };
+		275C6489240DD41F006EC9D9 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C6488240DD41F006EC9D9 /* ExploreViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		275C647D240DC748006EC9D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		275C6484240DC881006EC9D9 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		275C6486240DD071006EC9D9 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		275C6488240DD41F006EC9D9 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 			children = (
 				275C6484240DC881006EC9D9 /* MainTabBarController.swift */,
 				275C6486240DD071006EC9D9 /* FeedViewController.swift */,
+				275C6488240DD41F006EC9D9 /* ExploreViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 			files = (
 				275C6470240DC744006EC9D9 /* AppDelegate.swift in Sources */,
 				275C6472240DC744006EC9D9 /* SceneDelegate.swift in Sources */,
+				275C6489240DD41F006EC9D9 /* ExploreViewController.swift in Sources */,
 				275C6487240DD071006EC9D9 /* FeedViewController.swift in Sources */,
 				275C6485240DC881006EC9D9 /* MainTabBarController.swift in Sources */,
 			);
