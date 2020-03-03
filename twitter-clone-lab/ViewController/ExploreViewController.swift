@@ -16,14 +16,5 @@ class ExploreViewController: UIViewController
         super.viewDidLoad()
         //
         view.backgroundColor = .systemGray2
-        //
-        setupTabBar()
-    }
-    
-    //MARK: - Tab Bar
-    func setupTabBar()
-    {
-        tabBarItem.image = UIImage(systemName: "magnifyingglass.circle")
-        tabBarItem.selectedImage = UIImage(systemName: "magnifyingglass.circle.fill")
     }
 }

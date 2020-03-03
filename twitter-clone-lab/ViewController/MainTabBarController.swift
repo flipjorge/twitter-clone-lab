@@ -24,7 +24,12 @@ class MainTabBarController: UITabBarController
     func setupViews()
     {
         let feed = FeedViewController()
+        feed.tabBarItem.image = UIImage(systemName: "house")
+        feed.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
+        
         let explore = ExploreViewController()
+        explore.tabBarItem.image = UIImage(systemName: "magnifyingglass.circle")
+        explore.tabBarItem.selectedImage = UIImage(systemName: "magnifyingglass.circle.fill")
         
         viewControllers = [feed, explore]
     }

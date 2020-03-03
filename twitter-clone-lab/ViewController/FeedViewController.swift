@@ -16,14 +16,5 @@ class FeedViewController: UIViewController
         super.viewDidLoad()
         //
         view.backgroundColor = .systemGray
-        //
-        setupTabBar()
-    }
-    
-    //MARK: - Tab Bar
-    func setupTabBar()
-    {
-        tabBarItem.image = UIImage(systemName: "house")
-        tabBarItem.selectedImage = UIImage(systemName: "house.fill")
     }
 }
