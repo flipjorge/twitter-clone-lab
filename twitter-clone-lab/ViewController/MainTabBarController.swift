@@ -23,14 +23,23 @@ class MainTabBarController: UITabBarController
     // MARK: - Setup Views
     func setupViews()
     {
-        let feed = FeedViewController()
-        feed.tabBarItem.image = UIImage(systemName: "house")
-        feed.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
+        let feed = navigationController(with: FeedViewController(),
+                                        tabBarImage: UIImage(systemName: "house"),
+                                        selectedTabBarImage: UIImage(systemName: "house.fill"))
         
-        let explore = ExploreViewController()
-        explore.tabBarItem.image = UIImage(systemName: "magnifyingglass.circle")
-        explore.tabBarItem.selectedImage = UIImage(systemName: "magnifyingglass.circle.fill")
+        let explore = navigationController(with: ExploreViewController(),
+                                           tabBarImage: UIImage(systemName: "magnifyingglass.circle"),
+                                           selectedTabBarImage: UIImage(systemName: "magnifyingglass.circle.fill"))
         
         viewControllers = [feed, explore]
+    }
+    
+    func navigationController(with viewController: UIViewController, tabBarImage: UIImage?, selectedTabBarImage: UIImage?) -> UIViewController
+    {
+        let navController = UINavigationController(rootViewController: viewController)
+        if tabBarImage != nil { navController.tabBarItem.image = tabBarImage }
+        if selectedTabBarImage != nil { navController.tabBarItem.selectedImage = selectedTabBarImage }
+        //
+        return navController
     }
 }
