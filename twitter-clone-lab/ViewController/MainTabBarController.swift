@@ -37,6 +37,7 @@ class MainTabBarController: UITabBarController
     func navigationController(with viewController: UIViewController, tabBarImage: UIImage?, selectedTabBarImage: UIImage?) -> UIViewController
     {
         let navController = UINavigationController(rootViewController: viewController)
+        navController.navigationBar.tintColor = UIColor.appTheme.white.rgb
         if tabBarImage != nil { navController.tabBarItem.image = tabBarImage }
         if selectedTabBarImage != nil { navController.tabBarItem.selectedImage = selectedTabBarImage }
         //
@@ -48,7 +49,7 @@ class MainTabBarController: UITabBarController
     func setupViews()
     {
         //tab bar
-        tabBar.tintColor = .mainBlue
+        tabBar.tintColor = .systemBackground
         
         //action button
         view.addSubview(actionButton)
@@ -62,7 +63,7 @@ class MainTabBarController: UITabBarController
     let actionButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = .white
-        button.backgroundColor = .mainBlue
+        button.backgroundColor = UIColor.appTheme.blue.rgb
         button.setImage(UIImage(systemName: "plus"), for: .normal)
         return button
     }()

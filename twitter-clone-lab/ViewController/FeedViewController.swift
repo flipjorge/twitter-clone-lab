@@ -23,7 +23,7 @@ class FeedViewController: UIViewController
     func setupViews()
     {
         //background
-        view.backgroundColor = .systemGray
+        view.backgroundColor = .systemBackground
         
         //title
         let iconView = UIImageView(image: UIImage(named: "twitter-480"))

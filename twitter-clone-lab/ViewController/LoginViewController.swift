@@ -23,6 +23,6 @@ class LoginViewController: UIViewController
     func setupViews()
     {
         //background
-        view.backgroundColor = .mainBlue
+        view.backgroundColor = UIColor.appTheme.blue.rgb
     }
 }

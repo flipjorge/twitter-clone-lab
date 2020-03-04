@@ -23,7 +23,7 @@ class ExploreViewController: UIViewController
     func setupViews()
     {
         //background
-        view.backgroundColor = .systemGray2
+        view.backgroundColor = .systemBackground
         
         //title
         navigationItem.title = "Explore"
