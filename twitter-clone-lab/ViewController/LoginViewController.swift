@@ -24,5 +24,19 @@ class LoginViewController: UIViewController
     {
         //background
         view.backgroundColor = UIColor.appTheme.blue.rgb
+        
+        //icon
+        view.addSubview(logo)
+        logo.centerXAnchor(on: view, top: view.safeAreaLayoutGuide.topAnchor)
+        logo.sizeAnchor(width: 150, height: 150)
     }
+    
+    
+    // MARK: - Icon
+    let logo: UIImageView = {
+        let image = #imageLiteral(resourceName: "twitter-480")
+        let imageView = UIImageView(image:image.withTintColor(UIColor.white))
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
 }
