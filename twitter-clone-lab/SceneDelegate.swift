@@ -16,9 +16,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions)
     {
         guard let scene = scene as? UIWindowScene else { return }
-        //
+        
+        //create login view controller embeded in a navigation controller
+        let loginViewController = LoginViewController()
+        let navigationController = UINavigationController(rootViewController: loginViewController)
+        navigationController.navigationBar.isHidden = true
+        
+        //create and show window
         window = UIWindow(windowScene: scene)
-        window?.rootViewController = MainTabBarController()
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 
