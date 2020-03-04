@@ -10,6 +10,8 @@ import UIKit
 
 extension UIView
 {
+    // MARK: - Position
+    
     func positionAnchor(left: NSLayoutXAxisAnchor? = nil,
                 leftMargin: CGFloat = 0,
                 top: NSLayoutYAxisAnchor? = nil,
@@ -27,6 +29,8 @@ extension UIView
         if let bottom = bottom { bottomAnchor.constraint(equalTo: bottom, constant: -bottomMargin).isActive = true }
     }
     
+    
+    // MARK: - Size
     func sizeAnchor(width: CGFloat? = nil,
                     height: CGFloat? = nil)
     {
@@ -34,5 +38,27 @@ extension UIView
         
         if let width = width { widthAnchor.constraint(equalToConstant: width).isActive = true }
         if let height = height { heightAnchor.constraint(equalToConstant: height).isActive = true }
+    }
+    
+    
+    // MARK: - Center X
+    func centerXAnchor(on view: UIView,
+                       top: NSLayoutYAxisAnchor,
+                       topMargin: CGFloat = 0)
+    {
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        topAnchor.constraint(equalTo: top, constant: topMargin).isActive = true
+        centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    }
+    
+    func centerXAnchor(on view: UIView,
+                       bottom: NSLayoutYAxisAnchor,
+                       bottomMargin: CGFloat = 0)
+    {
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        bottomAnchor.constraint(equalTo: bottom, constant: bottomMargin).isActive = true
+        centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
 }
