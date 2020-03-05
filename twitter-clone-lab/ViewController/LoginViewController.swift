@@ -29,6 +29,22 @@ class LoginViewController: UIViewController
         view.addSubview(logo)
         logo.centerXAnchor(on: view, top: view.safeAreaLayoutGuide.topAnchor)
         logo.sizeAnchor(width: 150, height: 150)
+        
+        //user
+        view.addSubview(userField)
+        userField.sizeAnchor(height: 50)
+        
+        //password
+        view.addSubview(passwordField)
+        passwordField.sizeAnchor(height: 50)
+        
+        //stack
+        let stack = UIStackView(arrangedSubviews: [userField, passwordField])
+        stack.distribution = .fillEqually
+        stack.axis = .vertical
+        stack.spacing = 8
+        view.addSubview(stack)
+        stack.positionAnchor(leading: view.leadingAnchor, leadingMargin: 16, top: logo.bottomAnchor, topMargin: 32, trailing: view.trailingAnchor, trailingMargin: 16)
     }
     
     
@@ -38,5 +54,22 @@ class LoginViewController: UIViewController
         let imageView = UIImageView(image:image.withTintColor(UIColor.white))
         imageView.contentMode = .scaleAspectFit
         return imageView
+    }()
+    
+    
+    // MARK: - Fields
+    let userField: InputFieldView = {
+        let view = InputFieldView()
+        view.iconView.image = UIImage(systemName: "envelope")
+        view.textView.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+        return view
+    }()
+    
+    let passwordField: InputFieldView = {
+        let view = InputFieldView()
+        view.iconView.image = UIImage(systemName: "lock")
+        view.textView.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+        view.textView.isSecureTextEntry = true
+        return view
     }()
 }
