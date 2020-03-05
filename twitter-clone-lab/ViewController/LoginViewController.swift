@@ -39,12 +39,10 @@ class LoginViewController: UIViewController
         passwordField.sizeAnchor(height: 50)
         
         //stack
-        let stack = UIStackView(arrangedSubviews: [userField, passwordField])
-        stack.distribution = .fillEqually
-        stack.axis = .vertical
-        stack.spacing = 8
-        view.addSubview(stack)
-        stack.positionAnchor(leading: view.leadingAnchor, leadingMargin: 16, top: logo.bottomAnchor, topMargin: 32, trailing: view.trailingAnchor, trailingMargin: 16)
+        fieldsStack.addArrangedSubview(userField)
+        fieldsStack.addArrangedSubview(passwordField)
+        view.addSubview(fieldsStack)
+        fieldsStack.positionAnchor(leading: view.leadingAnchor, leadingMargin: 16, top: logo.bottomAnchor, topMargin: 32, trailing: view.trailingAnchor, trailingMargin: 16)
     }
     
     
@@ -70,6 +68,14 @@ class LoginViewController: UIViewController
         view.iconView.image = UIImage(systemName: "lock")
         view.textView.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
         view.textView.isSecureTextEntry = true
+        return view
+    }()
+    
+    let fieldsStack: UIStackView = {
+        let view = UIStackView()
+        view.distribution = .fillEqually
+        view.axis = .vertical
+        view.spacing = 8
         return view
     }()
 }
