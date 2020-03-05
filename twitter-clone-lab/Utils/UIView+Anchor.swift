@@ -12,20 +12,20 @@ extension UIView
 {
     // MARK: - Position
     
-    func positionAnchor(left: NSLayoutXAxisAnchor? = nil,
-                leftMargin: CGFloat = 0,
+    func positionAnchor(leading: NSLayoutXAxisAnchor? = nil,
+                leadingMargin: CGFloat = 0,
                 top: NSLayoutYAxisAnchor? = nil,
                 topMargin: CGFloat = 0,
-                right: NSLayoutXAxisAnchor? = nil,
-                rightMargin: CGFloat = 0,
+                trailing: NSLayoutXAxisAnchor? = nil,
+                trailingMargin: CGFloat = 0,
                 bottom: NSLayoutYAxisAnchor? = nil,
                 bottomMargin: CGFloat = 0)
     {
         translatesAutoresizingMaskIntoConstraints = false
         
-        if let left = left { leftAnchor.constraint(equalTo: left, constant: leftMargin).isActive = true }
+        if let leading = leading { leadingAnchor.constraint(equalTo: leading, constant: leadingMargin).isActive = true }
         if let top = top { topAnchor.constraint(equalTo: top, constant: topMargin).isActive = true }
-        if let right = right { rightAnchor.constraint(equalTo: right, constant: -rightMargin).isActive = true }
+        if let trailing = trailing { trailingAnchor.constraint(equalTo: trailing, constant: -trailingMargin).isActive = true }
         if let bottom = bottom { bottomAnchor.constraint(equalTo: bottom, constant: -bottomMargin).isActive = true }
     }
     

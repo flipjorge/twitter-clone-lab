@@ -54,7 +54,7 @@ class MainTabBarController: UITabBarController
         //action button
         view.addSubview(actionButton)
         actionButton.sizeAnchor(width: 56, height: 56)
-        actionButton.positionAnchor(right: view.rightAnchor, rightMargin: 16, bottom: view.safeAreaLayoutGuide.bottomAnchor, bottomMargin: 64)
+        actionButton.positionAnchor(trailing: view.rightAnchor, trailingMargin: 16, bottom: view.safeAreaLayoutGuide.bottomAnchor, bottomMargin: 64)
         actionButton.layer.cornerRadius = 56 / 2
     }
     
