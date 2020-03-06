@@ -58,7 +58,7 @@ extension UIView
     {
         translatesAutoresizingMaskIntoConstraints = false
         
-        bottomAnchor.constraint(equalTo: bottom, constant: bottomMargin).isActive = true
+        bottomAnchor.constraint(equalTo: bottom, constant: -bottomMargin).isActive = true
         centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
 }
