@@ -20,6 +20,9 @@ class LoginViewController: UIViewController
     {
         super.viewDidLoad()
         //
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
+        //
         setupDelegates()
         setupActions()
     }
@@ -60,22 +63,17 @@ class LoginViewController: UIViewController
 
 extension LoginViewController: UITextFieldDelegate
 {
-    func textFieldDidEndEditing(_ textField: UITextField)
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
-        guard let view = view as? LoginView else { return }
+        guard let view = view as? LoginView else { return true }
         //
-        switch textField {
-        case view.userField.textView:
+        if textField === view.userField.textView
+        {
             view.passwordField.textView.becomeFirstResponder()
-        case view.passwordField.textView:
-            print("login")
-        default:
-            print("default")
+        } else {
+            textField.resignFirstResponder()
         }
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        
         return true
     }
 }
