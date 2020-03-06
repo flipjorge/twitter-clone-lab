@@ -20,7 +20,18 @@ class LoginViewController: UIViewController
     {
         super.viewDidLoad()
         //
+        setupDelegates()
         setupActions()
+    }
+    
+    
+    // MARK: - Delegates
+    func setupDelegates()
+    {
+        guard let view = view as? LoginView else { return }
+        //
+        view.userField.textView.delegate = self
+        view.passwordField.textView.delegate = self
     }
     
     
@@ -45,4 +56,26 @@ class LoginViewController: UIViewController
         navigationController?.pushViewController(registrationViewController, animated: true)
     }
     
+}
+
+extension LoginViewController: UITextFieldDelegate
+{
+    func textFieldDidEndEditing(_ textField: UITextField)
+    {
+        guard let view = view as? LoginView else { return }
+        //
+        switch textField {
+        case view.userField.textView:
+            view.passwordField.textView.becomeFirstResponder()
+        case view.passwordField.textView:
+            print("login")
+        default:
+            print("default")
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
