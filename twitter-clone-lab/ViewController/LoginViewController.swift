@@ -41,6 +41,9 @@ class LoginViewController: UIViewController
         //login
         view.addSubview(loginButton)
         
+        //sign up
+        view.addSubview(signUpButton)
+        signUpButton.centerXAnchor(on: view, bottom: view.safeAreaLayoutGuide.bottomAnchor, bottomMargin: 16)
         
         //stack
         fieldsStack.addArrangedSubview(userField)
@@ -88,13 +91,27 @@ class LoginViewController: UIViewController
     
     // MARK: - Button
     let loginButton: UIButton = {
-        let view = UIButton()
+        let view = UIButton(type: .system)
         view.setTitle("Log In", for: .normal)
         view.setTitleColor(UIColor.appTheme.blue.rgb, for: .normal)
         view.backgroundColor = .white
         view.layer.cornerRadius = 5
         view.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         view.sizeAnchor(height: 50)
+        return view
+    }()
+    
+    
+    // MARK: - SignUp
+    let signUpButton: UIButton = {
+        let view = UIButton(type: .system)
+        let title = NSMutableAttributedString(string: "Don't have an account?" ,
+                                              attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 16),
+                                                           NSAttributedString.Key.foregroundColor: UIColor.appTheme.white.rgb])
+        title.append(NSAttributedString(string: " Sign up",
+                                        attributes: [NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 16),
+                                                                        NSAttributedString.Key.foregroundColor: UIColor.appTheme.white.rgb]))
+        view.setAttributedTitle(title, for: .normal)
         return view
     }()
 }
