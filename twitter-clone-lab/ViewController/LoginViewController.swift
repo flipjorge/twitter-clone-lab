@@ -40,7 +40,9 @@ class LoginViewController: UIViewController
     
     @objc func onSignUpTouch()
     {
-        print("sign up!")
+        let registrationViewController = RegistrationViewController()
+        //
+        navigationController?.pushViewController(registrationViewController, animated: true)
     }
     
 }

@@ -1,5 +1,5 @@
 //
-//  LoginView.swift
+//  RegistrationView.swift
 //  twitter-clone-lab
 //
 //  Created by Filipe Jorge on 06/03/2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginView: UIView
+class RegistrationView: UIView
 {
     // MARK: - Initializers
     required init?(coder: NSCoder)
@@ -30,11 +30,6 @@ class LoginView: UIView
         //background
         backgroundColor = UIColor.appTheme.blue.rgb
         
-        //icon
-        addSubview(logo)
-        logo.centerXAnchor(on: self, top: safeAreaLayoutGuide.topAnchor)
-        logo.sizeAnchor(width: 150, height: 150)
-        
         //user
         addSubview(userField)
         userField.sizeAnchor(height: 50)
@@ -43,20 +38,30 @@ class LoginView: UIView
         addSubview(passwordField)
         passwordField.sizeAnchor(height: 50)
         
-        //login
-        addSubview(loginButton)
+        //fullname
+        addSubview(fullNameField)
+        fullNameField.sizeAnchor(height: 50)
+        
+        //username
+        addSubview(userField)
+        userField.sizeAnchor(height: 50)
         
         //sign up
         addSubview(signUpButton)
-        signUpButton.centerXAnchor(on: self, bottom: safeAreaLayoutGuide.bottomAnchor, bottomMargin: 16)
+        
+        //login
+        addSubview(loginButton)
+        loginButton.centerXAnchor(on: self, bottom: safeAreaLayoutGuide.bottomAnchor, bottomMargin: 16)
         
         //stack
         fieldsStack.addArrangedSubview(userField)
         fieldsStack.addArrangedSubview(passwordField)
-        fieldsStack.addArrangedSubview(loginButton)
+        fieldsStack.addArrangedSubview(fullNameField)
+        fieldsStack.addArrangedSubview(usernameField)
+        fieldsStack.addArrangedSubview(signUpButton)
         fieldsStack.spacing = 20
         addSubview(fieldsStack)
-        fieldsStack.positionAnchor(leading: leadingAnchor, leadingMargin: 16, top: logo.bottomAnchor, topMargin: 32, trailing: trailingAnchor, trailingMargin: 16)
+        fieldsStack.positionAnchor(leading: leadingAnchor, leadingMargin: 16, top: topAnchor, topMargin: 32, trailing: trailingAnchor, trailingMargin: 16)
     }
     
     
@@ -85,6 +90,22 @@ class LoginView: UIView
         return view
     }()
     
+    let fullNameField: InputFieldView = {
+        let view = InputFieldView()
+        view.iconView.image = UIImage(systemName: "person")
+        view.textView.attributedPlaceholder = NSAttributedString(string: "Full Name", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+        view.textView.isSecureTextEntry = true
+        return view
+    }()
+    
+    let usernameField: InputFieldView = {
+        let view = InputFieldView()
+        view.iconView.image = UIImage(systemName: "person")
+        view.textView.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+        view.textView.isSecureTextEntry = true
+        return view
+    }()
+    
     let fieldsStack: UIStackView = {
         let view = UIStackView()
         view.distribution = .fillEqually
@@ -94,10 +115,10 @@ class LoginView: UIView
     }()
     
     
-    // MARK: - Login
-    let loginButton: UIButton = {
+    // MARK: - SignUp
+    let signUpButton: UIButton = {
         let view = UIButton(type: .system)
-        view.setTitle("Log In", for: .normal)
+        view.setTitle("Sign Up", for: .normal)
         view.setTitleColor(UIColor.appTheme.blue.rgb, for: .normal)
         view.backgroundColor = .white
         view.layer.cornerRadius = 5
@@ -107,13 +128,13 @@ class LoginView: UIView
     }()
     
     
-    // MARK: - SignUp
-    let signUpButton: UIButton = {
+    // MARK: - Login
+    let loginButton: UIButton = {
         let view = UIButton(type: .system)
-        let title = NSMutableAttributedString(string: "Don't have an account?" ,
+        let title = NSMutableAttributedString(string: "Already have an account?" ,
                                               attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 16),
                                                            NSAttributedString.Key.foregroundColor: UIColor.appTheme.white.rgb])
-        title.append(NSAttributedString(string: " Sign up",
+        title.append(NSAttributedString(string: " Log In",
                                         attributes: [NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 16),
                                                                         NSAttributedString.Key.foregroundColor: UIColor.appTheme.white.rgb]))
         view.setAttributedTitle(title, for: .normal)
