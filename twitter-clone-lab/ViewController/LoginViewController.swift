@@ -38,9 +38,15 @@ class LoginViewController: UIViewController
         view.addSubview(passwordField)
         passwordField.sizeAnchor(height: 50)
         
+        //login
+        view.addSubview(loginButton)
+        
+        
         //stack
         fieldsStack.addArrangedSubview(userField)
         fieldsStack.addArrangedSubview(passwordField)
+        fieldsStack.addArrangedSubview(loginButton)
+        fieldsStack.spacing = 20
         view.addSubview(fieldsStack)
         fieldsStack.positionAnchor(leading: view.leadingAnchor, leadingMargin: 16, top: logo.bottomAnchor, topMargin: 32, trailing: view.trailingAnchor, trailingMargin: 16)
     }
@@ -76,6 +82,19 @@ class LoginViewController: UIViewController
         view.distribution = .fillEqually
         view.axis = .vertical
         view.spacing = 8
+        return view
+    }()
+    
+    
+    // MARK: - Button
+    let loginButton: UIButton = {
+        let view = UIButton()
+        view.setTitle("Log In", for: .normal)
+        view.setTitleColor(UIColor.appTheme.blue.rgb, for: .normal)
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 5
+        view.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        view.sizeAnchor(height: 50)
         return view
     }()
 }
