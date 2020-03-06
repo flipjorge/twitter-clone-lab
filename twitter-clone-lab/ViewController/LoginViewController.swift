@@ -10,7 +10,7 @@ import UIKit
 
 class LoginViewController: UIViewController
 {
-    // MARK: Lifecycle
+    // MARK: - Lifecycle
     override func loadView()
     {
         view = LoginView()
@@ -20,5 +20,27 @@ class LoginViewController: UIViewController
     {
         super.viewDidLoad()
         //
+        setupActions()
     }
+    
+    
+    // MARK: - Actions
+    func setupActions()
+    {
+        guard let view = view as? LoginView else { return }
+        //
+        view.loginButton.addTarget(self, action: #selector(onLoginTouch), for: .touchUpInside)
+        view.signUpButton.addTarget(self, action: #selector(onSignUpTouch), for: .touchUpInside)
+    }
+    
+    @objc func onLoginTouch()
+    {
+        print("login!")
+    }
+    
+    @objc func onSignUpTouch()
+    {
+        print("sign up!")
+    }
+    
 }
