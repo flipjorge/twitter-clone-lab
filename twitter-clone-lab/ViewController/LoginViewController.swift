@@ -20,8 +20,6 @@ class LoginViewController: UIViewController
     {
         super.viewDidLoad()
         //
-        view.addEndEditingOnTap()
-        //
         setupDelegates()
         setupActions()
     }
@@ -42,6 +40,7 @@ class LoginViewController: UIViewController
     {
         guard let view = view as? LoginView else { return }
         //
+        view.addEndEditingOnTap()
         view.loginButton.addTarget(self, action: #selector(onLoginTouch), for: .touchUpInside)
         view.signUpButton.addTarget(self, action: #selector(onSignUpTouch), for: .touchUpInside)
     }
