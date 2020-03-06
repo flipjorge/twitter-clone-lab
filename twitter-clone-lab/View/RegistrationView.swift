@@ -78,6 +78,16 @@ class RegistrationView: UIView
         return view
     }()
     
+    func setUserPhoto(_ image: UIImage)
+    {
+        photoButton.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
+        photoButton.contentMode = .scaleAspectFill
+        photoButton.layer.cornerRadius = photoButton.bounds.width / 2
+        photoButton.layer.masksToBounds = true
+        photoButton.layer.borderColor = UIColor.appTheme.white.rgb.cgColor
+        photoButton.layer.borderWidth = 3
+    }
+    
     
     // MARK: - Fields
     let userField: InputFieldView = {
