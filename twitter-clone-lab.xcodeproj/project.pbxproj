@@ -22,6 +22,7 @@
 		275C64972412E851006EC9D9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C64962412E851006EC9D9 /* LoginView.swift */; };
 		275C64992412ED93006EC9D9 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C64982412ED93006EC9D9 /* RegistrationViewController.swift */; };
 		275C649B2412EDD2006EC9D9 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C649A2412EDD2006EC9D9 /* RegistrationView.swift */; };
+		275C649F24131418006EC9D9 /* UIView+EndEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C649E24131418006EC9D9 /* UIView+EndEditing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		275C64962412E851006EC9D9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		275C64982412ED93006EC9D9 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		275C649A2412EDD2006EC9D9 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		275C649E24131418006EC9D9 /* UIView+EndEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+EndEditing.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				275C648B240F1587006EC9D9 /* UIView+Anchor.swift */,
 				275C648D240F20F6006EC9D9 /* UIColor+RGB.swift */,
 				275C649124106320006EC9D9 /* UIColor+AppTheme.swift */,
+				275C649E24131418006EC9D9 /* UIView+EndEditing.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				275C648C240F1587006EC9D9 /* UIView+Anchor.swift in Sources */,
 				275C648E240F20F6006EC9D9 /* UIColor+RGB.swift in Sources */,
 				275C6470240DC744006EC9D9 /* AppDelegate.swift in Sources */,
+				275C649F24131418006EC9D9 /* UIView+EndEditing.swift in Sources */,
 				275C649B2412EDD2006EC9D9 /* RegistrationView.swift in Sources */,
 				275C6472240DC744006EC9D9 /* SceneDelegate.swift in Sources */,
 				275C649024105618006EC9D9 /* LoginViewController.swift in Sources */,

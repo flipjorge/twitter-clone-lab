@@ -20,8 +20,7 @@ class LoginViewController: UIViewController
     {
         super.viewDidLoad()
         //
-        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
-        view.addGestureRecognizer(tap)
+        view.addEndEditingOnTap()
         //
         setupDelegates()
         setupActions()
