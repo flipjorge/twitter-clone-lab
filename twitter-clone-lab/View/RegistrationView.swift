@@ -30,6 +30,10 @@ class RegistrationView: UIView
         //background
         backgroundColor = UIColor.appTheme.blue.rgb
         
+        //photo
+        addSubview(photoButton)
+        photoButton.centerXAnchor(on: self, top: self.safeAreaLayoutGuide.topAnchor, topMargin: 16)
+        
         //user
         addSubview(userField)
         userField.sizeAnchor(height: 50)
@@ -61,16 +65,17 @@ class RegistrationView: UIView
         fieldsStack.addArrangedSubview(signUpButton)
         fieldsStack.spacing = 20
         addSubview(fieldsStack)
-        fieldsStack.positionAnchor(leading: leadingAnchor, leadingMargin: 16, top: topAnchor, topMargin: 32, trailing: trailingAnchor, trailingMargin: 16)
+        fieldsStack.positionAnchor(leading: leadingAnchor, leadingMargin: 16, top: photoButton.bottomAnchor, topMargin: 32, trailing: trailingAnchor, trailingMargin: 16)
     }
     
     
-    // MARK: - Icon
-    let logo: UIImageView = {
-        let image = #imageLiteral(resourceName: "twitter-480")
-        let imageView = UIImageView(image:image.withTintColor(UIColor.white))
-        imageView.contentMode = .scaleAspectFit
-        return imageView
+    // MARK: - Photo
+    let photoButton: UIButton = {
+        let view = UIButton(type: .system)
+        view.setImage(#imageLiteral(resourceName: "plus_photo"), for: .normal)
+        view.sizeAnchor(width: 150, height: 150)
+        view.tintColor = .white
+        return view
     }()
     
     
