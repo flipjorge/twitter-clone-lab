@@ -19,6 +19,7 @@
 		275C649024105618006EC9D9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C648F24105618006EC9D9 /* LoginViewController.swift */; };
 		275C649224106320006EC9D9 /* UIColor+AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C649124106320006EC9D9 /* UIColor+AppTheme.swift */; };
 		275C64952411B222006EC9D9 /* InputFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C64942411B222006EC9D9 /* InputFieldView.swift */; };
+		275C64972412E851006EC9D9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C64962412E851006EC9D9 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		275C648F24105618006EC9D9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		275C649124106320006EC9D9 /* UIColor+AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppTheme.swift"; sourceTree = "<group>"; };
 		275C64942411B222006EC9D9 /* InputFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldView.swift; sourceTree = "<group>"; };
+		275C64962412E851006EC9D9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				275C64942411B222006EC9D9 /* InputFieldView.swift */,
+				275C64962412E851006EC9D9 /* LoginView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				275C649224106320006EC9D9 /* UIColor+AppTheme.swift in Sources */,
 				275C64952411B222006EC9D9 /* InputFieldView.swift in Sources */,
 				275C6489240DD41F006EC9D9 /* ExploreViewController.swift in Sources */,
+				275C64972412E851006EC9D9 /* LoginView.swift in Sources */,
 				275C6487240DD071006EC9D9 /* FeedViewController.swift in Sources */,
 				275C6485240DC881006EC9D9 /* MainTabBarController.swift in Sources */,
 			);
