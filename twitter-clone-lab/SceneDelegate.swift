@@ -17,14 +17,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     {
         guard let scene = scene as? UIWindowScene else { return }
         
-        //create login view controller embeded in a navigation controller
-        let loginViewController = LoginViewController()
-        let navigationController = UINavigationController(rootViewController: loginViewController)
-        navigationController.navigationBar.isHidden = true
+        //main view controller
+        let mainViewController = MainViewController()
         
         //create and show window
         window = UIWindow(windowScene: scene)
-        window?.rootViewController = navigationController
+        window?.rootViewController = mainViewController
         window?.makeKeyAndVisible()
     }
 
