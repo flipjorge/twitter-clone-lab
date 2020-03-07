@@ -46,9 +46,7 @@ class LoginView: UIView
         //status
         addSubview(statusField)
         statusField.font = UIFont.systemFont(ofSize: 12)
-        statusField.text = "Status code"
         statusField.isHidden = true
-        statusField.sizeAnchor(height: 20)
         
         //login
         addSubview(loginButton)
@@ -98,7 +96,6 @@ class LoginView: UIView
     
     let fieldsStack: UIStackView = {
         let view = UIStackView()
-        view.distribution = .fillEqually
         view.axis = .vertical
         view.spacing = 8
         return view
@@ -106,9 +103,12 @@ class LoginView: UIView
     
     
     // MARK: - Status
-    let statusField: UITextField = {
-        let view = UITextField()
+    let statusField: UITextView = {
+        let view = UITextView()
+        view.backgroundColor = .none
         view.textColor = .white
+        view.isScrollEnabled = false
+        view.isEditable = false
         return view
     }()
     
