@@ -47,8 +47,15 @@ class RegistrationView: UIView
         fullNameField.sizeAnchor(height: 50)
         
         //username
-        addSubview(emailField)
-        emailField.sizeAnchor(height: 50)
+        addSubview(usernameField)
+        usernameField.sizeAnchor(height: 50)
+        
+        //status
+        addSubview(statusField)
+        statusField.font = UIFont.systemFont(ofSize: 12)
+        statusField.text = "Status code"
+        statusField.isHidden = true
+        statusField.sizeAnchor(height: 20)
         
         //sign up
         addSubview(signUpButton)
@@ -62,6 +69,7 @@ class RegistrationView: UIView
         fieldsStack.addArrangedSubview(passwordField)
         fieldsStack.addArrangedSubview(fullNameField)
         fieldsStack.addArrangedSubview(usernameField)
+        fieldsStack.addArrangedSubview(statusField)
         fieldsStack.addArrangedSubview(signUpButton)
         fieldsStack.spacing = 20
         addSubview(fieldsStack)
@@ -131,11 +139,29 @@ class RegistrationView: UIView
     
     let fieldsStack: UIStackView = {
         let view = UIStackView()
-        view.distribution = .fillEqually
         view.axis = .vertical
         view.spacing = 8
         return view
     }()
+    
+    
+    // MARK: - Status
+    let statusField: UITextField = {
+        let view = UITextField()
+        view.textColor = .white
+        return view
+    }()
+    
+    func showStatus(_ message:String)
+    {
+        statusField.text = message
+        statusField.isHidden = false
+    }
+    
+    func hideStatus()
+    {
+        statusField.isHidden = true
+    }
     
     
     // MARK: - SignUp

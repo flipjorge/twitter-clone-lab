@@ -59,6 +59,7 @@ class RegistrationViewController: UIViewController
     
     @objc func onSignUpTouch()
     {
+        view.endEditing(true)
         signUp()
     }
     
@@ -94,6 +95,7 @@ class RegistrationViewController: UIViewController
         AuthService.shared.registerUser(credentials) { error, user in
             guard error == nil else {
                 print(error!.localizedDescription)
+                view.showStatus(error!.localizedDescription)
                 return
             }
             //
@@ -140,5 +142,12 @@ extension RegistrationViewController: UITextFieldDelegate
         }
         
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField)
+    {
+        guard let view = view as? RegistrationView else { return }
+        //
+        view.hideStatus()
     }
 }
