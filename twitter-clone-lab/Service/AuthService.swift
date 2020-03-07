@@ -87,10 +87,10 @@ class AuthService : ProfilePicturesStorage
                 guard let value = snapshot.value as? NSDictionary else { return }
                 //
                 let userData = UserModel(uid:user.uid,
-                                         email:value[UserModel.Key.email] as? String,
-                                         name:value[UserModel.Key.name] as? String,
-                                         user:value[UserModel.Key.user] as? String,
-                                         picture:value[UserModel.Key.picture] as? String)
+                                         email:value[UserModel.Key.email.rawValue] as? String,
+                                         name:value[UserModel.Key.name.rawValue] as? String,
+                                         user:value[UserModel.Key.user.rawValue] as? String,
+                                         picture:value[UserModel.Key.picture.rawValue] as? String)
                 //
                 completion(nil, userData)
             }
