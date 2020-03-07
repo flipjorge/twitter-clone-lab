@@ -42,6 +42,7 @@ enum UserKey:String
     case email = "e"
     case name = "n"
     case user = "u"
+    case picture = "pic"
 }
 
 
