@@ -74,6 +74,7 @@ class LoginView: UIView
         let view = InputFieldView()
         view.iconView.image = UIImage(systemName: "envelope")
         view.textView.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+        view.textView.keyboardType = .emailAddress
         return view
     }()
     

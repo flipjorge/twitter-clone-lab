@@ -94,6 +94,7 @@ class RegistrationView: UIView
         let view = InputFieldView()
         view.iconView.image = UIImage(systemName: "envelope")
         view.textView.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+        view.textView.keyboardType = .emailAddress
         return view
     }()
     
@@ -109,6 +110,7 @@ class RegistrationView: UIView
         let view = InputFieldView()
         view.iconView.image = UIImage(systemName: "person")
         view.textView.attributedPlaceholder = NSAttributedString(string: "Full Name", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+        view.textView.keyboardType = .alphabet
         return view
     }()
     
@@ -116,6 +118,7 @@ class RegistrationView: UIView
         let view = InputFieldView()
         view.iconView.image = UIImage(systemName: "person")
         view.textView.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
+        view.textView.keyboardType = .default
         return view
     }()
     
