@@ -19,6 +19,21 @@ struct AuthCredentials
     let profilePicture: Data?
 }
 
+enum AuthError: Error
+{
+    case userNotLoggedIn, failedGetUserData
+    
+    var localizedDescription: String
+    {
+        switch self {
+        case .userNotLoggedIn:
+            return "User not logged in"
+        case .failedGetUserData:
+            return "Failed to get user data"
+        }
+    }
+}
+
 class AuthService : ProfilePicturesStorage
 {
     static let shared = AuthService()
@@ -74,6 +89,30 @@ class AuthService : ProfilePicturesStorage
     
     
     // MARK: - Login
+    func getCurrentUser(completion: @escaping((Error?, UserModel?) -> Void))
+    {
+        guard let user = Auth.auth().currentUser else {
+            completion(AuthError.userNotLoggedIn, nil)
+            return
+        }
+        
+        //get user data
+        UserModel.database.child(user.uid).observeSingleEvent(of: .value) { snapshot in
+            guard let value = snapshot.value as? NSDictionary else {
+                completion(AuthError.failedGetUserData, nil)
+                return
+            }
+            //
+            let userData = UserModel(uid:user.uid,
+                                     email:value[UserModel.Key.email.rawValue] as? String,
+                                     name:value[UserModel.Key.name.rawValue] as? String,
+                                     user:value[UserModel.Key.user.rawValue] as? String,
+                                     picture:value[UserModel.Key.picture.rawValue] as? String)
+            //
+            completion(nil, userData)
+        }
+    }
+    
     func loginUser(_ credentials: AuthCredentials, completion: @escaping((Error?, UserModel?) -> Void))
     {
         Auth.auth().signIn(withEmail: credentials.email, password: credentials.password) { result, error in
