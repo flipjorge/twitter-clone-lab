@@ -103,9 +103,9 @@
 			children = (
 				275C64A9241400AC006EC9D9 /* Model */,
 				275C64A42413F008006EC9D9 /* Service */,
+				275C6483240DC834006EC9D9 /* ViewController */,
 				275C64932411B1E8006EC9D9 /* View */,
 				275C648A240F1537006EC9D9 /* Utils */,
-				275C6483240DC834006EC9D9 /* ViewController */,
 				275C646F240DC744006EC9D9 /* AppDelegate.swift */,
 				275C6471240DC744006EC9D9 /* SceneDelegate.swift */,
 				275C6478240DC748006EC9D9 /* Assets.xcassets */,
