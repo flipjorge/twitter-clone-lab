@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class RegistrationViewController: UIViewController, UsersDatabase, ProfilePicturesStorage
+class RegistrationViewController: UIViewController
 {
     // MARK: - Lifecycle
     override func loadView()
@@ -88,51 +88,16 @@ class RegistrationViewController: UIViewController, UsersDatabase, ProfilePictur
     func signUp()
     {
         guard let view = view as? RegistrationView else { return }
-        //check image
-        guard let profileImage = view.userPhoto else {
-            print("profile image required!")
-            return
-        }
-        
-        //create user
-        Auth.auth().createUser(withEmail: view.emailField.inputValue, password: view.passwordField.inputValue) { [weak self] result, error in
-            guard let user = result?.user, error == nil else {
+        //
+        let userPhoto = view.userPhoto?.jpegData(compressionQuality: 0.3)
+        let credentials = AuthCredentials(email: view.emailField.inputValue, password: view.passwordField.inputValue, fullName: view.fullNameField.inputValue, userName: view.usernameField.inputValue, profilePicture: userPhoto)
+        AuthService.shared.registerUser(credentials) { error, user in
+            guard error == nil else {
                 print(error!.localizedDescription)
                 return
             }
-            
-            //upload profile picture
-            guard let jpegData = profileImage.jpegData(compressionQuality: 0.3) else { return }
-            let imageReference = self?.profilePicturesStorage.child(NSUUID().uuidString)
-            imageReference?.putData(jpegData, metadata: nil) { (metadata, error) in
-                guard error == nil else {
-                    print(error!.localizedDescription)
-                    return
-                }
-                
-                //download URL
-                imageReference?.downloadURL(completion: { url, error in
-                    guard error == nil, let url = url else {
-                        print(error!.localizedDescription)
-                        return
-                    }
-                    
-                    //store user data
-                    let userHash: [AnyHashable:Any] = [UserKey.email.rawValue:view.emailField.inputValue,
-                                                       UserKey.name.rawValue:view.fullNameField.inputValue,
-                                                       UserKey.user.rawValue:view.usernameField.inputValue,
-                                                       UserKey.picture.rawValue:url.absoluteString]
-                    
-                    self?.usersDatabase.child(user.uid).updateChildValues(userHash) { error, reference in
-                        guard error == nil else {
-                            print(error!.localizedDescription)
-                            return
-                        }
-                        
-                        print("success!")
-                    }
-                })
-            }
+            //
+            print("done!!")
         }
     }
 }
@@ -151,6 +116,8 @@ extension RegistrationViewController: UIImagePickerControllerDelegate, UINavigat
     }
 }
 
+
+// MARK: - Text Field Delegates
 extension RegistrationViewController: UITextFieldDelegate
 {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool

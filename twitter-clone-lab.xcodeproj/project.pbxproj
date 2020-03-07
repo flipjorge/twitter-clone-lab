@@ -24,7 +24,10 @@
 		275C649B2412EDD2006EC9D9 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C649A2412EDD2006EC9D9 /* RegistrationView.swift */; };
 		275C649F24131418006EC9D9 /* UIView+EndEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C649E24131418006EC9D9 /* UIView+EndEditing.swift */; };
 		275C64A124139C7D006EC9D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 275C64A024139C7D006EC9D9 /* GoogleService-Info.plist */; };
-		275C64A32413B031006EC9D9 /* UIViewController+FireDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C64A22413B031006EC9D9 /* UIViewController+FireDatabase.swift */; };
+		275C64A62413F02F006EC9D9 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C64A52413F02F006EC9D9 /* AuthService.swift */; };
+		275C64A82413F46C006EC9D9 /* StorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C64A72413F46C006EC9D9 /* StorageProtocol.swift */; };
+		275C64AB241400C1006EC9D9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C64AA241400C1006EC9D9 /* UserModel.swift */; };
+		275C64AD2414022A006EC9D9 /* UserModel+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C64AC2414022A006EC9D9 /* UserModel+Firebase.swift */; };
 		D556485438E665F5E98BC0F1 /* Pods_twitter_clone_lab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEAF875C07EA8C124879074A /* Pods_twitter_clone_lab.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,7 +52,10 @@
 		275C649A2412EDD2006EC9D9 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		275C649E24131418006EC9D9 /* UIView+EndEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+EndEditing.swift"; sourceTree = "<group>"; };
 		275C64A024139C7D006EC9D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		275C64A22413B031006EC9D9 /* UIViewController+FireDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+FireDatabase.swift"; sourceTree = "<group>"; };
+		275C64A52413F02F006EC9D9 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		275C64A72413F46C006EC9D9 /* StorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageProtocol.swift; sourceTree = "<group>"; };
+		275C64AA241400C1006EC9D9 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		275C64AC2414022A006EC9D9 /* UserModel+Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserModel+Firebase.swift"; sourceTree = "<group>"; };
 		784E2050FB242EE954F04D7C /* Pods-twitter-clone-lab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-twitter-clone-lab.debug.xcconfig"; path = "Target Support Files/Pods-twitter-clone-lab/Pods-twitter-clone-lab.debug.xcconfig"; sourceTree = "<group>"; };
 		DEAF875C07EA8C124879074A /* Pods_twitter_clone_lab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_twitter_clone_lab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -95,6 +101,8 @@
 		275C646E240DC744006EC9D9 /* twitter-clone-lab */ = {
 			isa = PBXGroup;
 			children = (
+				275C64A9241400AC006EC9D9 /* Model */,
+				275C64A42413F008006EC9D9 /* Service */,
 				275C64932411B1E8006EC9D9 /* View */,
 				275C648A240F1537006EC9D9 /* Utils */,
 				275C6483240DC834006EC9D9 /* ViewController */,
@@ -127,7 +135,7 @@
 				275C648D240F20F6006EC9D9 /* UIColor+RGB.swift */,
 				275C649124106320006EC9D9 /* UIColor+AppTheme.swift */,
 				275C649E24131418006EC9D9 /* UIView+EndEditing.swift */,
-				275C64A22413B031006EC9D9 /* UIViewController+FireDatabase.swift */,
+				275C64A72413F46C006EC9D9 /* StorageProtocol.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -140,6 +148,23 @@
 				275C649A2412EDD2006EC9D9 /* RegistrationView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		275C64A42413F008006EC9D9 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				275C64A52413F02F006EC9D9 /* AuthService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		275C64A9241400AC006EC9D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				275C64AA241400C1006EC9D9 /* UserModel.swift */,
+				275C64AC2414022A006EC9D9 /* UserModel+Firebase.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		6E98E2D84C0F045E3117BB57 /* Pods */ = {
@@ -273,14 +298,17 @@
 				275C649B2412EDD2006EC9D9 /* RegistrationView.swift in Sources */,
 				275C6472240DC744006EC9D9 /* SceneDelegate.swift in Sources */,
 				275C649024105618006EC9D9 /* LoginViewController.swift in Sources */,
-				275C64A32413B031006EC9D9 /* UIViewController+FireDatabase.swift in Sources */,
 				275C649224106320006EC9D9 /* UIColor+AppTheme.swift in Sources */,
+				275C64AD2414022A006EC9D9 /* UserModel+Firebase.swift in Sources */,
 				275C64992412ED93006EC9D9 /* RegistrationViewController.swift in Sources */,
 				275C64952411B222006EC9D9 /* InputFieldView.swift in Sources */,
 				275C6489240DD41F006EC9D9 /* ExploreViewController.swift in Sources */,
 				275C64972412E851006EC9D9 /* LoginView.swift in Sources */,
 				275C6487240DD071006EC9D9 /* FeedViewController.swift in Sources */,
+				275C64A82413F46C006EC9D9 /* StorageProtocol.swift in Sources */,
 				275C6485240DC881006EC9D9 /* MainTabBarController.swift in Sources */,
+				275C64AB241400C1006EC9D9 /* UserModel.swift in Sources */,
+				275C64A62413F02F006EC9D9 /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
