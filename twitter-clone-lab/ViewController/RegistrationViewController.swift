@@ -90,12 +90,15 @@ class RegistrationViewController: UIViewController
     {
         guard let view = view as? RegistrationView else { return }
         //
+        view.startWorkInProgress()
+        //
         let userPhoto = view.userPhoto?.jpegData(compressionQuality: 0.3)
         let credentials = AuthCredentials(email: view.emailField.inputValue, password: view.passwordField.inputValue, fullName: view.fullNameField.inputValue, userName: view.usernameField.inputValue, profilePicture: userPhoto)
         AuthService.shared.registerUser(credentials) { error, user in
             guard error == nil else {
                 print(error!.localizedDescription)
                 view.showStatus(error!.localizedDescription)
+                view.stopWorkInProgress()
                 return
             }
             //

@@ -176,6 +176,20 @@ class RegistrationView: UIView
         return view
     }()
     
+    func startWorkInProgress()
+    {
+        signUpButton.isEnabled = false
+        signUpButton.setTitle("Signing up...", for: .normal)
+        signUpButton.backgroundColor = UIColor.rgb(red: 255, green: 255, blue: 255, alpha: 180)
+    }
+    
+    func stopWorkInProgress()
+    {
+        signUpButton.isEnabled = true
+        signUpButton.setTitle("Sign Up", for: .normal)
+        signUpButton.backgroundColor = .white
+    }
+    
     
     // MARK: - Login
     let loginButton: UIButton = {
