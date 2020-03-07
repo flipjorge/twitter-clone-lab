@@ -42,7 +42,7 @@ class InputFieldView: UIView
     
     
     // MARK: - Value
-    var value:String {
+    var inputValue:String {
         textView.text ?? ""
     }
     
