@@ -62,6 +62,8 @@ class LoginViewController: UIViewController
     
 }
 
+
+// MARK: - Text Field Delegates
 extension LoginViewController: UITextFieldDelegate
 {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
@@ -76,5 +78,12 @@ extension LoginViewController: UITextFieldDelegate
         }
         
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField)
+    {
+        guard let view = view as? RegistrationView else { return }
+        //
+        view.hideStatus()
     }
 }
