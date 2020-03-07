@@ -11,5 +11,6 @@ target 'twitter-clone-lab' do
   # https://firebase.google.com/docs/ios/setup#available-pods
   pod "Firebase/Auth"
   pod "Firebase/Database"
+  pod "Firebase/Storage"
   
 end
