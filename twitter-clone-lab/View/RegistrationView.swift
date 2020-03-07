@@ -78,8 +78,11 @@ class RegistrationView: UIView
         return view
     }()
     
+    var userPhoto:UIImage?
+    
     func setUserPhoto(_ image: UIImage)
     {
+        userPhoto = image
         photoButton.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
         photoButton.contentMode = .scaleAspectFill
         photoButton.layer.cornerRadius = photoButton.bounds.width / 2
