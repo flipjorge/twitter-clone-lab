@@ -75,6 +75,7 @@ class LoginView: UIView
         view.iconView.image = UIImage(systemName: "envelope")
         view.textView.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
         view.textView.keyboardType = .emailAddress
+        view.textView.autocapitalizationType = .none
         return view
     }()
     
@@ -83,6 +84,7 @@ class LoginView: UIView
         view.iconView.image = UIImage(systemName: "lock")
         view.textView.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
         view.textView.isSecureTextEntry = true
+        view.textView.autocapitalizationType = .none
         return view
     }()
     

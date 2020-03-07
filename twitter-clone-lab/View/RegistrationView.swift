@@ -98,6 +98,7 @@ class RegistrationView: UIView
         view.iconView.image = UIImage(systemName: "envelope")
         view.textView.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
         view.textView.keyboardType = .emailAddress
+        view.textView.autocapitalizationType = .none
         return view
     }()
     
@@ -106,6 +107,7 @@ class RegistrationView: UIView
         view.iconView.image = UIImage(systemName: "lock")
         view.textView.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
         view.textView.isSecureTextEntry = true
+        view.textView.autocapitalizationType = .none
         return view
     }()
     
@@ -114,6 +116,7 @@ class RegistrationView: UIView
         view.iconView.image = UIImage(systemName: "person")
         view.textView.attributedPlaceholder = NSAttributedString(string: "Full Name", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
         view.textView.keyboardType = .alphabet
+        view.textView.autocapitalizationType = .words
         return view
     }()
     
@@ -122,6 +125,7 @@ class RegistrationView: UIView
         view.iconView.image = UIImage(systemName: "person")
         view.textView.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
         view.textView.keyboardType = .default
+        view.textView.autocapitalizationType = .none
         return view
     }()
     
