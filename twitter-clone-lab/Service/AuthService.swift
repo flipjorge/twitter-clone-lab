@@ -135,4 +135,13 @@ class AuthService : ProfilePicturesStorage
             }
         }
     }
+    
+    func logoutUser() throws
+    {
+        do {
+            try Auth.auth().signOut()
+        } catch let error {
+            throw error
+        }
+    }
 }
