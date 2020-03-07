@@ -20,7 +20,20 @@ class RegistrationViewController: UIViewController
     {
         super.viewDidLoad()
         //
+        setupDelegates()
         setupActions()
+    }
+    
+    
+    // MARK: - Delegates
+    func setupDelegates()
+    {
+        guard let view = view as? RegistrationView else { return }
+        //
+        view.userField.textView.delegate = self
+        view.passwordField.textView.delegate = self
+        view.fullNameField.textView.delegate = self
+        view.usernameField.textView.delegate = self
     }
     
     
@@ -29,6 +42,7 @@ class RegistrationViewController: UIViewController
     {
         guard let view = view as? RegistrationView else { return }
         //
+        view.addEndEditingOnTap()
         view.photoButton.addTarget(self, action: #selector(onPhotoTouch), for: .touchUpInside)
         view.signUpButton.addTarget(self, action: #selector(onSignUpTouch), for: .touchUpInside)
         view.loginButton.addTarget(self, action: #selector(onLoginTouch), for: .touchUpInside)
@@ -72,5 +86,30 @@ extension RegistrationViewController: UIImagePickerControllerDelegate, UINavigat
         view.setUserPhoto(image)
         //
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension RegistrationViewController: UITextFieldDelegate
+{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        guard let view = view as? RegistrationView else { return true }
+        //
+        switch textField
+        {
+        case view.userField.textView:
+            view.passwordField.textView.becomeFirstResponder()
+        case view.passwordField.textView:
+            view.fullNameField.textView.becomeFirstResponder()
+        case view.fullNameField.textView:
+            view.usernameField.textView.becomeFirstResponder()
+        case view.usernameField.textView:
+            print("sign up!")
+            textField.resignFirstResponder()
+        default:
+            textField.resignFirstResponder()
+        }
+        
+        return true
     }
 }
