@@ -109,7 +109,6 @@ class RegistrationView: UIView
         let view = InputFieldView()
         view.iconView.image = UIImage(systemName: "person")
         view.textView.attributedPlaceholder = NSAttributedString(string: "Full Name", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
-        view.textView.isSecureTextEntry = true
         return view
     }()
     
@@ -117,7 +116,6 @@ class RegistrationView: UIView
         let view = InputFieldView()
         view.iconView.image = UIImage(systemName: "person")
         view.textView.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
-        view.textView.isSecureTextEntry = true
         return view
     }()
     
