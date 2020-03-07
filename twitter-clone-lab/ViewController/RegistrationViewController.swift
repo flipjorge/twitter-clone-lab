@@ -46,6 +46,8 @@ class RegistrationViewController: UIViewController
         view.photoButton.addTarget(self, action: #selector(onPhotoTouch), for: .touchUpInside)
         view.signUpButton.addTarget(self, action: #selector(onSignUpTouch), for: .touchUpInside)
         view.loginButton.addTarget(self, action: #selector(onLoginTouch), for: .touchUpInside)
+        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardChange), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardChange), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc func onPhotoTouch()
@@ -61,6 +63,11 @@ class RegistrationViewController: UIViewController
     @objc func onLoginTouch()
     {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func onKeyboardChange(notification: Notification)
+    {
+        view.frame.origin.y = notification.name == UIResponder.keyboardWillChangeFrameNotification ? -120 : 0
     }
     
     
