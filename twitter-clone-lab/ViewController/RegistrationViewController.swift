@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class RegistrationViewController: UIViewController, UsersDatabase
+class RegistrationViewController: UIViewController, UsersDatabase, ProfilePicturesStorage
 {
     // MARK: - Lifecycle
     override func loadView()
@@ -88,22 +88,50 @@ class RegistrationViewController: UIViewController, UsersDatabase
     func signUp()
     {
         guard let view = view as? RegistrationView else { return }
-        //
-        Auth.auth().createUser(withEmail: view.emailField.inputValue, password: view.passwordField.inputValue) { result, error in
+        //check image
+        guard let profileImage = view.userPhoto else {
+            print("profile image required!")
+            return
+        }
+        
+        //create user
+        Auth.auth().createUser(withEmail: view.emailField.inputValue, password: view.passwordField.inputValue) { [weak self] result, error in
             guard let user = result?.user, error == nil else {
                 print(error!.localizedDescription)
                 return
             }
             
-            let userHash: [AnyHashable:Any] = [UserKey.email.rawValue:view.emailField.inputValue, UserKey.name.rawValue:view.fullNameField.inputValue, UserKey.user.rawValue:view.usernameField.inputValue]
-            
-            self.usersDatabase.child(user.uid).updateChildValues(userHash) { error, reference in
+            //upload profile picture
+            guard let jpegData = profileImage.jpegData(compressionQuality: 0.3) else { return }
+            let imageReference = self?.profilePicturesStorage.child(NSUUID().uuidString)
+            imageReference?.putData(jpegData, metadata: nil) { (metadata, error) in
                 guard error == nil else {
                     print(error!.localizedDescription)
                     return
                 }
                 
-                print("success!")
+                //download URL
+                imageReference?.downloadURL(completion: { url, error in
+                    guard error == nil, let url = url else {
+                        print(error!.localizedDescription)
+                        return
+                    }
+                    
+                    //store user data
+                    let userHash: [AnyHashable:Any] = [UserKey.email.rawValue:view.emailField.inputValue,
+                                                       UserKey.name.rawValue:view.fullNameField.inputValue,
+                                                       UserKey.user.rawValue:view.usernameField.inputValue,
+                                                       UserKey.picture.rawValue:url.absoluteString]
+                    
+                    self?.usersDatabase.child(user.uid).updateChildValues(userHash) { error, reference in
+                        guard error == nil else {
+                            print(error!.localizedDescription)
+                            return
+                        }
+                        
+                        print("success!")
+                    }
+                })
             }
         }
     }
