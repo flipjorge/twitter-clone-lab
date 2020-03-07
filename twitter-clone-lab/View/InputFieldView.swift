@@ -41,6 +41,11 @@ class InputFieldView: UIView
     }
     
     
+    // MARK: - Value
+    var value:String {
+        textView.text ?? ""
+    }
+    
     // MARK: - Icon
     let iconView: UIImageView = {
         let view = UIImageView()
