@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
-class RegistrationViewController: UIViewController
+class RegistrationViewController: UIViewController, UsersDatabase
 {
     // MARK: - Lifecycle
     override func loadView()
@@ -57,7 +59,7 @@ class RegistrationViewController: UIViewController
     
     @objc func onSignUpTouch()
     {
-        print("sign up!")
+        signUp()
     }
     
     @objc func onLoginTouch()
@@ -80,6 +82,31 @@ class RegistrationViewController: UIViewController
         view.delegate = self
         return view
     }()
+    
+    
+    // MARK: - SignUp
+    func signUp()
+    {
+        guard let view = view as? RegistrationView else { return }
+        //
+        Auth.auth().createUser(withEmail: view.emailField.inputValue, password: view.passwordField.inputValue) { result, error in
+            guard let user = result?.user, error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            
+            let userHash: [AnyHashable:Any] = [UserKey.email.rawValue:view.emailField.inputValue, UserKey.name.rawValue:view.fullNameField.inputValue, UserKey.user.rawValue:view.usernameField.inputValue]
+            
+            self.usersDatabase.child(user.uid).updateChildValues(userHash) { error, reference in
+                guard error == nil else {
+                    print(error!.localizedDescription)
+                    return
+                }
+                
+                print("success!")
+            }
+        }
+    }
 }
 
 // MARK: - Image Picker Delegates
@@ -111,7 +138,7 @@ extension RegistrationViewController: UITextFieldDelegate
         case view.fullNameField.textView:
             view.usernameField.textView.becomeFirstResponder()
         case view.usernameField.textView:
-            print("sign up!")
+            signUp()
             textField.resignFirstResponder()
         default:
             textField.resignFirstResponder()
