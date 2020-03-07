@@ -47,10 +47,8 @@ class LoginViewController: UIViewController
     
     @objc func onLoginTouch()
     {
-        guard let view = view as? LoginView else { return }
-        //
-        view.startWorkInProgress()
-        print("login!")
+        view.endEditing(true)
+        logIn()
     }
     
     @objc func onSignUpTouch()
@@ -58,6 +56,28 @@ class LoginViewController: UIViewController
         let registrationViewController = RegistrationViewController()
         //
         navigationController?.pushViewController(registrationViewController, animated: true)
+    }
+    
+    
+    // MARK: - LogIn
+    func logIn()
+    {
+        guard let view = view as? LoginView else { return }
+        //
+        let credentials = AuthCredentials(email: view.emailField.inputValue, password: view.passwordField.inputValue, fullName: nil, userName: nil, profilePicture: nil)
+        //
+        AuthService.shared.loginUser(credentials) { error, user in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                view.showStatus(error!.localizedDescription)
+                view.stopWorkInProgress()
+                return
+            }
+            //
+            print("done!!")
+        }
+        //
+        view.startWorkInProgress()
     }
     
 }
@@ -74,6 +94,7 @@ extension LoginViewController: UITextFieldDelegate
         {
             view.passwordField.textView.becomeFirstResponder()
         } else {
+            logIn()
             textField.resignFirstResponder()
         }
         
