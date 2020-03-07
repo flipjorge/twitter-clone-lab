@@ -7,12 +7,18 @@
 //
 
 import FirebaseDatabase
+import FirebaseStorage
 
 extension UIViewController
 {
     var database:DatabaseReference
     {
         Database.database().reference()
+    }
+    
+    var storage:StorageReference
+    {
+        Storage.storage().reference()
     }
 }
 
@@ -36,4 +42,19 @@ enum UserKey:String
     case email = "e"
     case name = "n"
     case user = "u"
+}
+
+
+// MARK: - Profile Picture
+protocol ProfilePicturesStorage
+{
+    var profilePicturesStorage:StorageReference { get }
+}
+
+extension ProfilePicturesStorage where Self:UIViewController
+{
+    var profilePicturesStorage:StorageReference
+    {
+        storage.child("profile_pictures")
+    }
 }
