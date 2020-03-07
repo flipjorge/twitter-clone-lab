@@ -23,6 +23,7 @@ class AuthService : ProfilePicturesStorage
 {
     static let shared = AuthService()
     
+    // MARK: - Register
     func registerUser(_ credentials:AuthCredentials, completion: @escaping((Error?, UserModel?) -> Void))
     {
         //create user
@@ -67,6 +68,31 @@ class AuthService : ProfilePicturesStorage
                 userData.update() { error, reference in
                     completion(error, userData)
                 }
+            }
+        }
+    }
+    
+    
+    // MARK: - Login
+    func loginUser(_ credentials: AuthCredentials, completion: @escaping((Error?, UserModel?) -> Void))
+    {
+        Auth.auth().signIn(withEmail: credentials.email, password: credentials.password) { result, error in
+            guard error == nil, let user = result?.user else {
+                completion(error, nil)
+                return
+            }
+            
+            //get user data
+            UserModel.database.child(user.uid).observeSingleEvent(of: .value) { snapshot in
+                guard let value = snapshot.value as? NSDictionary else { return }
+                //
+                let userData = UserModel(uid:user.uid,
+                                         email:value[UserModel.Key.email] as? String,
+                                         name:value[UserModel.Key.name] as? String,
+                                         user:value[UserModel.Key.user] as? String,
+                                         picture:value[UserModel.Key.picture] as? String)
+                //
+                completion(nil, userData)
             }
         }
     }
