@@ -43,6 +43,13 @@ class LoginView: UIView
         addSubview(passwordField)
         passwordField.sizeAnchor(height: 50)
         
+        //status
+        addSubview(statusField)
+        statusField.font = UIFont.systemFont(ofSize: 12)
+        statusField.text = "Status code"
+        statusField.isHidden = true
+        statusField.sizeAnchor(height: 20)
+        
         //login
         addSubview(loginButton)
         
@@ -53,6 +60,7 @@ class LoginView: UIView
         //stack
         fieldsStack.addArrangedSubview(emailField)
         fieldsStack.addArrangedSubview(passwordField)
+        fieldsStack.addArrangedSubview(statusField)
         fieldsStack.addArrangedSubview(loginButton)
         fieldsStack.spacing = 20
         addSubview(fieldsStack)
@@ -97,6 +105,25 @@ class LoginView: UIView
     }()
     
     
+    // MARK: - Status
+    let statusField: UITextField = {
+        let view = UITextField()
+        view.textColor = .white
+        return view
+    }()
+    
+    func showStatus(_ message:String)
+    {
+        statusField.text = message
+        statusField.isHidden = false
+    }
+    
+    func hideStatus()
+    {
+        statusField.isHidden = true
+    }
+    
+    
     // MARK: - Login
     let loginButton: UIButton = {
         let view = UIButton(type: .system)
@@ -108,6 +135,20 @@ class LoginView: UIView
         view.sizeAnchor(height: 50)
         return view
     }()
+    
+    func startWorkInProgress()
+    {
+        loginButton.isEnabled = false
+        loginButton.setTitle("Logging in...", for: .normal)
+        loginButton.backgroundColor = UIColor.rgb(red: 255, green: 255, blue: 255, alpha: 180)
+    }
+    
+    func stopWorkInProgress()
+    {
+        loginButton.isEnabled = true
+        loginButton.setTitle("Log In", for: .normal)
+        loginButton.backgroundColor = .white
+    }
     
     
     // MARK: - SignUp

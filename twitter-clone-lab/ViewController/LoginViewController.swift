@@ -47,6 +47,9 @@ class LoginViewController: UIViewController
     
     @objc func onLoginTouch()
     {
+        guard let view = view as? LoginView else { return }
+        //
+        view.startWorkInProgress()
         print("login!")
     }
     
