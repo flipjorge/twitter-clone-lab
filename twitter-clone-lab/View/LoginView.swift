@@ -36,8 +36,8 @@ class LoginView: UIView
         logo.sizeAnchor(width: 150, height: 150)
         
         //user
-        addSubview(userField)
-        userField.sizeAnchor(height: 50)
+        addSubview(emailField)
+        emailField.sizeAnchor(height: 50)
         
         //password
         addSubview(passwordField)
@@ -51,7 +51,7 @@ class LoginView: UIView
         signUpButton.centerXAnchor(on: self, bottom: safeAreaLayoutGuide.bottomAnchor, bottomMargin: 16)
         
         //stack
-        fieldsStack.addArrangedSubview(userField)
+        fieldsStack.addArrangedSubview(emailField)
         fieldsStack.addArrangedSubview(passwordField)
         fieldsStack.addArrangedSubview(loginButton)
         fieldsStack.spacing = 20
@@ -70,7 +70,7 @@ class LoginView: UIView
     
     
     // MARK: - Fields
-    let userField: InputFieldView = {
+    let emailField: InputFieldView = {
         let view = InputFieldView()
         view.iconView.image = UIImage(systemName: "envelope")
         view.textView.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])

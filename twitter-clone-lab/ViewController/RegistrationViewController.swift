@@ -30,7 +30,7 @@ class RegistrationViewController: UIViewController
     {
         guard let view = view as? RegistrationView else { return }
         //
-        view.userField.textView.delegate = self
+        view.emailField.textView.delegate = self
         view.passwordField.textView.delegate = self
         view.fullNameField.textView.delegate = self
         view.usernameField.textView.delegate = self
@@ -104,7 +104,7 @@ extension RegistrationViewController: UITextFieldDelegate
         //
         switch textField
         {
-        case view.userField.textView:
+        case view.emailField.textView:
             view.passwordField.textView.becomeFirstResponder()
         case view.passwordField.textView:
             view.fullNameField.textView.becomeFirstResponder()

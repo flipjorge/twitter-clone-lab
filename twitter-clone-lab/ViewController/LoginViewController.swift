@@ -30,7 +30,7 @@ class LoginViewController: UIViewController
     {
         guard let view = view as? LoginView else { return }
         //
-        view.userField.textView.delegate = self
+        view.emailField.textView.delegate = self
         view.passwordField.textView.delegate = self
     }
     
@@ -65,7 +65,7 @@ extension LoginViewController: UITextFieldDelegate
     {
         guard let view = view as? LoginView else { return true }
         //
-        if textField === view.userField.textView
+        if textField === view.emailField.textView
         {
             view.passwordField.textView.becomeFirstResponder()
         } else {

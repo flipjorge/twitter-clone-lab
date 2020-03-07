@@ -35,8 +35,8 @@ class RegistrationView: UIView
         photoButton.centerXAnchor(on: self, top: self.safeAreaLayoutGuide.topAnchor, topMargin: 16)
         
         //user
-        addSubview(userField)
-        userField.sizeAnchor(height: 50)
+        addSubview(emailField)
+        emailField.sizeAnchor(height: 50)
         
         //password
         addSubview(passwordField)
@@ -47,8 +47,8 @@ class RegistrationView: UIView
         fullNameField.sizeAnchor(height: 50)
         
         //username
-        addSubview(userField)
-        userField.sizeAnchor(height: 50)
+        addSubview(emailField)
+        emailField.sizeAnchor(height: 50)
         
         //sign up
         addSubview(signUpButton)
@@ -58,7 +58,7 @@ class RegistrationView: UIView
         loginButton.centerXAnchor(on: self, bottom: safeAreaLayoutGuide.bottomAnchor, bottomMargin: 16)
         
         //stack
-        fieldsStack.addArrangedSubview(userField)
+        fieldsStack.addArrangedSubview(emailField)
         fieldsStack.addArrangedSubview(passwordField)
         fieldsStack.addArrangedSubview(fullNameField)
         fieldsStack.addArrangedSubview(usernameField)
@@ -90,7 +90,7 @@ class RegistrationView: UIView
     
     
     // MARK: - Fields
-    let userField: InputFieldView = {
+    let emailField: InputFieldView = {
         let view = InputFieldView()
         view.iconView.image = UIImage(systemName: "envelope")
         view.textView.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor:UIColor.white])
