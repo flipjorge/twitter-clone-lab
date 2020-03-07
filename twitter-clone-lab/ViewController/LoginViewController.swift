@@ -26,6 +26,8 @@ class LoginViewController: UIViewController
     
     
     // MARK: - Delegates
+    var delegate:LoginViewControllerDelegate?
+    
     func setupDelegates()
     {
         guard let view = view as? LoginView else { return }
@@ -54,6 +56,7 @@ class LoginViewController: UIViewController
     @objc func onSignUpTouch()
     {
         let registrationViewController = RegistrationViewController()
+        registrationViewController.delegate = self
         //
         navigationController?.pushViewController(registrationViewController, animated: true)
     }
@@ -67,14 +70,20 @@ class LoginViewController: UIViewController
         let credentials = AuthCredentials(email: view.emailField.inputValue, password: view.passwordField.inputValue, fullName: nil, userName: nil, profilePicture: nil)
         //
         AuthService.shared.loginUser(credentials) { error, user in
-            guard error == nil else {
+            guard error == nil, let user = user else {
                 print(error!.localizedDescription)
-                view.showStatus(error!.localizedDescription)
+                view.showStatus(error?.localizedDescription ?? "Failed to login user")
                 view.stopWorkInProgress()
                 return
             }
             //
-            print("done!!")
+            guard let delegate = self.delegate else {
+                view.showStatus("Login View needs a delegate to dismiss")
+                view.stopWorkInProgress()
+                return
+            }
+            //
+            delegate.loginViewControllerLoggedIn(viewController: self, user: user)
         }
         //
         view.startWorkInProgress()
@@ -107,4 +116,23 @@ extension LoginViewController: UITextFieldDelegate
         //
         view.hideStatus()
     }
+}
+
+
+// MARK: - Registration Delegate
+extension LoginViewController: RegistrationViewControllerDelegate
+{
+    func registrationViewControllerSignedUp(viewController: RegistrationViewController, user: UserModel)
+    {
+        guard let delegate = delegate else { return }
+        //
+        delegate.loginViewControllerLoggedIn(viewController: self, user: user)
+    }
+}
+
+
+// MARK: - Login View Protocol
+protocol LoginViewControllerDelegate
+{
+    func loginViewControllerLoggedIn(viewController:LoginViewController, user:UserModel)
 }

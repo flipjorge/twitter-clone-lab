@@ -28,6 +28,8 @@ class RegistrationViewController: UIViewController
     
     
     // MARK: - Delegates
+    var delegate:RegistrationViewControllerDelegate?
+    
     func setupDelegates()
     {
         guard let view = view as? RegistrationView else { return }
@@ -95,14 +97,20 @@ class RegistrationViewController: UIViewController
         let userPhoto = view.userPhoto?.jpegData(compressionQuality: 0.3)
         let credentials = AuthCredentials(email: view.emailField.inputValue, password: view.passwordField.inputValue, fullName: view.fullNameField.inputValue, userName: view.usernameField.inputValue, profilePicture: userPhoto)
         AuthService.shared.registerUser(credentials) { error, user in
-            guard error == nil else {
+            guard error == nil, let user = user else {
                 print(error!.localizedDescription)
                 view.showStatus(error!.localizedDescription)
                 view.stopWorkInProgress()
                 return
             }
             //
-            print("done!!")
+            guard let delegate = self.delegate else {
+                view.showStatus("Registration View needs a delegate to dismiss")
+                view.stopWorkInProgress()
+                return
+            }
+            //
+            delegate.registrationViewControllerSignedUp(viewController: self, user: user)
         }
     }
 }
@@ -153,4 +161,11 @@ extension RegistrationViewController: UITextFieldDelegate
         //
         view.hideStatus()
     }
+}
+
+
+// MARK: - Registration View Protocol
+protocol RegistrationViewControllerDelegate
+{
+    func registrationViewControllerSignedUp(viewController:RegistrationViewController, user:UserModel)
 }

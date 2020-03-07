@@ -10,38 +10,77 @@ import UIKit
 
 class MainViewController: UIViewController
 {
+    // MARK: - Lifecycle
     override func loadView()
     {
         view = UIView()
         view.backgroundColor = UIColor.appTheme.blue.rgb
+        
+        try? AuthService.shared.logoutUser()
     }
     
     override func viewDidLoad()
     {
-        super.viewDidLoad()
-        
         //load main tab view controller
-        let mainTabViewController = MainTabBarController()
-        addChild(mainTabViewController)
-        mainTabViewController.view.frame = view.bounds
-        view.addSubview(mainTabViewController.view)
-        mainTabViewController.didMove(toParent: self)
-        
+        mainTabBarController = MainTabBarController()
+        guard let tabBar = mainTabBarController else { return }
         //
-        AuthService.shared.getCurrentUser { error, user in
-            guard user == nil else { return }
-            
+        addChild(tabBar)
+        tabBar.view.frame = view.bounds
+        view.addSubview(tabBar.view)
+        tabBar.didMove(toParent: self)
+        //
+        authNavigationViewController = UINavigationController()
+        guard let auth = authNavigationViewController else { return }
+        auth.view.backgroundColor = UIColor.appTheme.blue.rgb
+        auth.view.frame = self.view.bounds
+        auth.isNavigationBarHidden = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        //
+        guard shouldVerifyLogin else { return }
+        //
+        guard let auth = authNavigationViewController else { return }
+        auth.modalPresentationStyle = .fullScreen
+        self.present(auth, animated: false)
+        //
+        AuthService.shared.getCurrentUser { [weak self] error, user in
+            guard let self = self else { return }
+            guard user == nil else {
+                self.shouldVerifyLogin = false
+                auth.dismiss(animated: true)
+                return
+            }
+            //
             let loginViewController = LoginViewController()
-            
-            let authNavigationController = UINavigationController()
-            authNavigationController.view.frame = self.view.bounds
-            authNavigationController.navigationBar.isHidden = true
-            authNavigationController.pushViewController(loginViewController, animated: false)
-            
-            self.addChild(authNavigationController)
-            self.view.addSubview(authNavigationController.view)
-            
-            loginViewController.didMove(toParent: self)
+            loginViewController.delegate = self
+            auth.pushViewController(loginViewController, animated: true)
         }
+    }
+    
+    
+    // MARK: - Verify login
+    var shouldVerifyLogin:Bool = true
+    
+    
+    // MARK: - Auth View Controller
+    var authNavigationViewController:UINavigationController?
+    
+    
+    // MARK: - Tab Bar View Controller
+    var mainTabBarController:MainTabBarController?
+}
+
+
+// MARK: - Login Delegate
+extension MainViewController: LoginViewControllerDelegate
+{
+    func loginViewControllerLoggedIn(viewController: LoginViewController, user: UserModel)
+    {
+        self.shouldVerifyLogin = false
+        authNavigationViewController?.dismiss(animated: true)
     }
 }
