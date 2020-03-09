@@ -11,23 +11,18 @@ import UIKit
 class FeedViewController: UIViewController
 {
     // MARK: - Lifecycle
+    override func loadView()
+    {
+        super.loadView()
+        //
+        view = FeedView()
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         //
-        setupViews()
-    }
-    
-    
-    // MARK: - Views
-    func setupViews()
-    {
-        //background
-        view.backgroundColor = .systemBackground
-        
-        //title
-        let iconView = UIImageView(image: UIImage(named: "twitter-480"))
-        iconView.contentMode = .scaleAspectFit
-        navigationItem.titleView = iconView
+        guard let view = view as? FeedView else { return }
+        navigationItem.titleView = view.logo
     }
 }
