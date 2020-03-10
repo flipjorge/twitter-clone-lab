@@ -51,6 +51,7 @@ class MainViewController: UIViewController
             guard let self = self else { return }
             guard user == nil else {
                 self.shouldVerifyLogin = false
+                self.mainTabBarController?.user = user
                 auth.dismiss(animated: true)
                 return
             }
@@ -81,6 +82,7 @@ extension MainViewController: LoginViewControllerDelegate
     func loginViewControllerLoggedIn(viewController: LoginViewController, user: UserModel)
     {
         self.shouldVerifyLogin = false
+        mainTabBarController?.user = user
         authNavigationViewController?.dismiss(animated: true)
     }
 }

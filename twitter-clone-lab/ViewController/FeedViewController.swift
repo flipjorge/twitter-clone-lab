@@ -24,5 +24,23 @@ class FeedViewController: UIViewController
         //
         guard let view = view as? FeedView else { return }
         navigationItem.titleView = view.logo
+        navigationItem.leftBarButtonItem = view.userPictureButton
+    }
+    
+    
+    // MARK: - User
+    var user: UserModel?
+    {
+        didSet
+        {
+            guard let view = view as? FeedView else { return }
+            guard let user = user else { return }
+            guard let pictureURL = user.pictureURL else { return }
+            //
+            view.userPictureImage.load(from: pictureURL) {
+                view.hideUserPicture(animated: false)
+                view.showUserPicture()
+            }
+        }
     }
 }
