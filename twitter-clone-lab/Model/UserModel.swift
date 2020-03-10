@@ -16,6 +16,12 @@ struct UserModel
     let user:String?
     let picture:String?
     
+    var pictureURL: URL?
+    {
+        guard let picture = picture else { return nil }
+        return URL(string: picture)
+    }
+    
     var hash:Hash
     {
         var hash = Hash()
