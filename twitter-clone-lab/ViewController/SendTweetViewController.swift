@@ -46,4 +46,14 @@ class SendTweetViewController: UIViewController
     {
         dismiss(animated: true, completion: nil)
     }
+    
+    
+    // MARK: - User
+    var user: UserModel?
+    {
+        didSet
+        {
+            if let user = user { print(user) }
+        }
+    }
 }
