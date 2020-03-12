@@ -53,7 +53,14 @@ class SendTweetViewController: UIViewController
     {
         didSet
         {
-            if let user = user { print(user) }
+            guard let user = user else { return }
+            guard let view = view as? SendTweetView else { return }
+            guard let pictureURL = user.pictureURL else { return }
+            //
+            view.userPicture.load(from: pictureURL) {
+                view.hideUserPicture(animated: false)
+                view.showUserPicture()
+            }
         }
     }
 }
