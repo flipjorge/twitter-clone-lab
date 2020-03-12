@@ -12,6 +12,17 @@ class SendTweetViewController: UIViewController
 {
 
     // MARK: - Lifecycle
+    init(user: UserModel)
+    {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder)
+    {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func loadView()
     {
         super.loadView()
@@ -38,6 +49,12 @@ class SendTweetViewController: UIViewController
         //
         view.cancelButton.target = self
         view.cancelButton.action = #selector(onCancelTouch)
+        //
+        guard let pictureURL = user.pictureURL else { return }
+        view.userPicture.load(from: pictureURL) {
+            view.hideUserPicture(animated: false)
+            view.showUserPicture()
+        }
     }
     
     
@@ -49,18 +66,5 @@ class SendTweetViewController: UIViewController
     
     
     // MARK: - User
-    var user: UserModel?
-    {
-        didSet
-        {
-            guard let user = user else { return }
-            guard let view = view as? SendTweetView else { return }
-            guard let pictureURL = user.pictureURL else { return }
-            //
-            view.userPicture.load(from: pictureURL) {
-                view.hideUserPicture(animated: false)
-                view.showUserPicture()
-            }
-        }
-    }
+    let user: UserModel
 }

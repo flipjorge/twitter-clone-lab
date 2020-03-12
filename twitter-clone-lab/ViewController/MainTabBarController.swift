@@ -69,8 +69,8 @@ class MainTabBarController: UITabBarController
     // MARK: - Actions
     @objc func onActionButtonTouch()
     {
-        let sendTweetController = SendTweetViewController()
-        sendTweetController.user = user
+        guard let user = user else { return }
+        let sendTweetController = SendTweetViewController(user: user)
         //
         let navigationController = UINavigationController(rootViewController: sendTweetController)
         navigationController.modalPresentationStyle = .fullScreen
