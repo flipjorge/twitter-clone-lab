@@ -23,6 +23,10 @@ class SendTweetView: UIView
         setupViews()
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UITextView.textDidChangeNotification, object: textField)
+    }
+    
     
     // MARK: - Setup Views
     func setupViews()
@@ -33,6 +37,16 @@ class SendTweetView: UIView
         //user picture
         addSubview(userPicture)
         userPicture.positionAnchor(leading: leadingAnchor, leadingMargin: 16, top: safeAreaLayoutGuide.topAnchor, topMargin: 16)
+        
+        //placeholder
+        addSubview(placeholderLabel)
+        placeholderLabel.positionAnchor(leading: userPicture.trailingAnchor, leadingMargin: 12, top: safeAreaLayoutGuide.topAnchor, topMargin: 16)
+        
+        //text
+        NotificationCenter.default.addObserver(self, selector: #selector(textChanged), name: UITextView.textDidChangeNotification, object: textField)
+        
+        addSubview(textField)
+        textField.positionAnchor(leading: userPicture.trailingAnchor, leadingMargin: 8, top: safeAreaLayoutGuide.topAnchor, topMargin: 8, trailing: trailingAnchor, trailingMargin: 8)
     }
     
     
@@ -89,4 +103,31 @@ class SendTweetView: UIView
             userPicture.alpha = 0
         }
     }
+    
+    
+    // MARK: - Text Field
+    let textField: UITextView = {
+        let view = UITextView()
+        view.text = ""
+        view.font = UIFont.systemFont(ofSize: 16)
+        view.isScrollEnabled = false
+        view.backgroundColor = .rgb(red: 0, green: 0, blue: 0, alpha: 0)
+        view.sizeAnchor(height: 300)
+        return view
+    }()
+    
+    @objc func textChanged()
+    {
+        placeholderLabel.isHidden = !textField.text.isEmpty
+    }
+    
+    
+    // MARK: - Placeholder
+    let placeholderLabel: UILabel = {
+        let view = UILabel()
+        view.text = "What's happening?"
+        view.font = UIFont.systemFont(ofSize: 16)
+        view.textColor = UIColor.appTheme.darkGray.rgb
+        return view
+    }()
 }
