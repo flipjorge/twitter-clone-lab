@@ -56,7 +56,7 @@ class MainTabBarController: UITabBarController
     func setupViews()
     {
         //tab bar
-        tabBar.tintColor = .systemBackground
+        tabBar.tintColor = UIColor.appTheme.blue.rgb
         
         //action button
         view.addSubview(actionButton)
