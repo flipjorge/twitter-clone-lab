@@ -50,6 +50,8 @@ class SendTweetViewController: UIViewController
         view.cancelButton.target = self
         view.cancelButton.action = #selector(onCancelTouch)
         //
+        view.tweetButton.addTarget(self, action: #selector(onTweetTouch), for: .touchUpInside)
+        //
         guard let pictureURL = user.pictureURL else { return }
         view.userPicture.load(from: pictureURL) {
             view.hideUserPicture(animated: false)
@@ -62,6 +64,23 @@ class SendTweetViewController: UIViewController
     @objc func onCancelTouch()
     {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func onTweetTouch()
+    {
+        guard let view = view as? SendTweetView else { return }
+        view.tweetButton.isEnabled = false
+        
+        TweetService.shared.sendTweet(view.textField.text, byUID: user.uid) { [weak self] error, tweet in
+            
+            guard error == nil else {
+                print(error!.localizedDescription)
+                view.tweetButton.isEnabled = true
+                return
+            }
+            
+            self?.dismiss(animated: true, completion: nil)
+        }
     }
     
     
