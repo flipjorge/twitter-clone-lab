@@ -38,5 +38,5 @@ struct Tweet
         case retweets = "rt"
     }
     
-    typealias Hash = [AnyHashable:Any]
+    typealias Hash = [String:Any]
 }

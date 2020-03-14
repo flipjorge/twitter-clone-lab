@@ -42,5 +42,5 @@ struct UserModel
         case picture = "pic"
     }
     
-    typealias Hash = [AnyHashable:Any]
+    typealias Hash = [String:Any]
 }
