@@ -25,6 +25,20 @@ class FeedViewController: UIViewController
         guard let view = view as? FeedView else { return }
         navigationItem.titleView = view.logo
         navigationItem.leftBarButtonItem = view.userPictureButton
+        
+        TweetService.shared.startFeed { [weak self] error, tweet in
+            guard error == nil, let tweet = tweet, let self = self else {
+                print(error!)
+                return
+            }
+            
+            self.tweets.append(tweet)
+        }
+    }
+    
+    deinit
+    {
+        TweetService.shared.stopFeed()
     }
     
     
@@ -43,4 +57,8 @@ class FeedViewController: UIViewController
             }
         }
     }
+    
+    
+    // MARK: - Tweets
+    var tweets: [Tweet] = [Tweet]()
 }
