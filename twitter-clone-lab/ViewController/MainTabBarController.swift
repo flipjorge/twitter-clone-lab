@@ -62,10 +62,21 @@ class MainTabBarController: UITabBarController
         view.addSubview(actionButton)
         actionButton.sizeAnchor(width: 56, height: 56)
         actionButton.positionAnchor(trailing: view.trailingAnchor, trailingMargin: 16, bottom: view.safeAreaLayoutGuide.bottomAnchor, bottomMargin: 64)
-        
+        actionButton.addTarget(self, action: #selector(onActionButtonTouch), for: .touchUpInside)
     }
     
     
+    // MARK: - Actions
+    @objc func onActionButtonTouch()
+    {
+        guard let user = user else { return }
+        let sendTweetController = SendTweetViewController(user: user)
+        //
+        let navigationController = UINavigationController(rootViewController: sendTweetController)
+        navigationController.modalPresentationStyle = .fullScreen
+        //
+        present(navigationController, animated: true, completion: nil)
+    }
     
     
     // MARK: - Action Button
