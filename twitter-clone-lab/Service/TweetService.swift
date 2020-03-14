@@ -28,7 +28,7 @@ class TweetService
     // MARK: - Send
     func sendTweet(_ caption:String, byUID uid:String, completion: ((Error?, Tweet?) -> Void)? = nil )
     {
-        let tweet = Tweet(uid: uid, caption: caption)
+        let tweet = Tweet(tid: nil, uid: uid, caption: caption)
         
         tweet.update { error, reference in
             if let completion = completion { completion(error, tweet) }

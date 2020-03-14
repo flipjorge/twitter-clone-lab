@@ -10,6 +10,7 @@ import Foundation
 
 struct Tweet
 {
+    let tid:String?
     let uid:String
     let caption:String
     let timestamp:Date = Date()
