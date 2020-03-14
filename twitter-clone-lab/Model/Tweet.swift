@@ -13,9 +13,34 @@ struct Tweet
     let tid:String?
     let uid:String
     let caption:String
-    let timestamp:Date = Date()
-    let likes:Int = 0
-    let retweets:Int = 0
+    let timestamp:Date
+    let likes:Int
+    let retweets:Int
+    
+    init(uid:String, caption:String)
+    {
+        self.tid = nil
+        self.uid = uid
+        self.caption = caption
+        self.timestamp = Date()
+        self.likes = 0
+        self.retweets = 0
+    }
+    
+    init(tid:String, hash:[String:Any])
+    {
+        self.tid = tid
+        self.uid = hash[Key.uid.rawValue] as? String ?? ""
+        self.caption = hash[Key.caption.rawValue] as? String ?? ""
+        self.likes = hash[Key.likes.rawValue] as? Int ?? 0
+        self.retweets = hash[Key.retweets.rawValue] as? Int ?? 0
+        
+        if let timestampValue = hash[Key.timestamp.rawValue] as? TimeInterval {
+            self.timestamp = Date(timeIntervalSince1970: timestampValue/1000)
+        } else {
+            self.timestamp = Date()
+        }
+    }
     
     var hash:Hash
     {
