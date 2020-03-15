@@ -22,6 +22,24 @@ struct UserModel
         return URL(string: picture)
     }
     
+    init(uid:String, email:String?, name:String?, user:String?, picture:String?)
+    {
+        self.uid = uid
+        self.email = email
+        self.name = name
+        self.user = user
+        self.picture = picture
+    }
+    
+    init(uid:String, hash:[String:Any])
+    {
+        self.uid = uid
+        self.email = hash[Key.email.rawValue] as? String
+        self.name = hash[Key.name.rawValue] as? String
+        self.user = hash[Key.user.rawValue] as? String
+        self.picture = hash[Key.picture.rawValue] as? String
+    }
+    
     var hash:Hash
     {
         var hash = Hash()

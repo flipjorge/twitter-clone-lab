@@ -30,6 +30,8 @@ class FeedView: UIView
         //background
         backgroundColor = UIColor.appTheme.white.rgb
         //
+        addSubview(collectionView)
+        collectionView.positionAnchor(leading: leadingAnchor, top: safeAreaLayoutGuide.topAnchor, trailing: trailingAnchor, bottom: safeAreaLayoutGuide.bottomAnchor)
     }
     
     
@@ -82,4 +84,11 @@ class FeedView: UIView
             userPictureImage.transform = CGAffineTransform(rotationAngle: 90)
         }
     }
+    
+    
+    // MARK: - Collection View
+    lazy var collectionView: UICollectionView = {
+        let view = UICollectionView(frame: self.bounds, collectionViewLayout: UICollectionViewFlowLayout())
+        return view
+    }()
 }

@@ -20,6 +20,12 @@ extension Tweet
         var modifiedHash = hash
         modifiedHash[Key.timestamp.rawValue] = ServerValue.timestamp()
         //
-        Tweet.database.childByAutoId().updateChildValues(modifiedHash, withCompletionBlock: completion)
+        let child:DatabaseReference
+        if let tid = tid {
+            child = Tweet.database.child(tid)
+        } else {
+            child = Tweet.database.childByAutoId()
+        }
+        child.updateChildValues(modifiedHash, withCompletionBlock: completion)
     }
 }
