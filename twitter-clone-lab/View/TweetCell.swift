@@ -87,13 +87,15 @@ class TweetCell: UICollectionViewCell
     {
         didSet
         {
-            guard let tweet = self.tweet,
-                let user = tweet.user else { return }
-            userNameLabel.text = tweet.user?.name
-            captionLabel.text = tweet.caption
+            guard let tweet = self.tweet else { return }
+            //
+            let viewModel = TweetViewModel(tweet:tweet)
+            
+            userNameLabel.attributedText = viewModel.title
+            captionLabel.text = viewModel.caption
             
             //picture
-            guard let picture = user.pictureURL else { return }
+            guard let picture = viewModel.pictureURL else { return }
             userPicture.load(from: picture)
         }
     }
