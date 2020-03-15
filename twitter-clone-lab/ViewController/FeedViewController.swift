@@ -32,7 +32,7 @@ class FeedViewController: UIViewController
                 return
             }
             
-            self.tweets.append(tweet)
+            self.tweets.insert(tweet, at: 0)
             view.collectionView.reloadData()
         }
     }
