@@ -12,6 +12,7 @@ enum TweetError: Error
 {
     case FailedToSend
     case FailedToFetchTweets
+    case FailedToGetUser
     
     var localizedDescription: String
     {
@@ -20,6 +21,8 @@ enum TweetError: Error
             return "Failed to send"
         case .FailedToFetchTweets:
             return "Failed to fetch tweets"
+        case .FailedToGetUser:
+            return "Failed to get user"
         }
     }
 }
@@ -47,13 +50,20 @@ class TweetService
         stopFeed()
         //
         feedObserve = Tweet.database.observe(.childAdded) { snapshot in
-            guard let value = snapshot.value as? [String:Any] else {
+            guard let value = snapshot.value as? [String:Any], let uid = value[Tweet.Key.uid.rawValue] as? String else {
                 completion(TweetError.FailedToFetchTweets, nil)
                 return
             }
             
-            let tweet = Tweet(tid: snapshot.key, hash: value)
-            completion(nil, tweet)
+            //get user
+            UserService.shared.getUser(uid: uid) { error, user in
+                guard error == nil, let user = user else {
+                    completion(error!, nil)
+                    return
+                }
+                let tweet = Tweet(user: user, tid: snapshot.key, hash: value)
+                completion(nil, tweet)
+            }
         }
     }
     

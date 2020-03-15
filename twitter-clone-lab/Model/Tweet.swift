@@ -16,6 +16,7 @@ struct Tweet
     let timestamp:Date
     let likes:Int
     let retweets:Int
+    let user:UserModel?
     
     init(uid:String, caption:String)
     {
@@ -25,15 +26,17 @@ struct Tweet
         self.timestamp = Date()
         self.likes = 0
         self.retweets = 0
+        self.user = nil
     }
     
-    init(tid:String, hash:[String:Any])
+    init(user:UserModel, tid:String, hash:[String:Any])
     {
         self.tid = tid
         self.uid = hash[Key.uid.rawValue] as? String ?? ""
         self.caption = hash[Key.caption.rawValue] as? String ?? ""
         self.likes = hash[Key.likes.rawValue] as? Int ?? 0
         self.retweets = hash[Key.retweets.rawValue] as? Int ?? 0
+        self.user = user
         
         if let timestampValue = hash[Key.timestamp.rawValue] as? TimeInterval {
             self.timestamp = Date(timeIntervalSince1970: timestampValue/1000)

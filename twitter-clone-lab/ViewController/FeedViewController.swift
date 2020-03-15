@@ -26,12 +26,14 @@ class FeedViewController: UIViewController
         setupViews()
         //
         TweetService.shared.startFeed { [weak self] error, tweet in
-            guard error == nil, let tweet = tweet, let self = self else {
+            guard let self = self, let view = self.view as? FeedView else { return }
+            guard error == nil, let tweet = tweet else {
                 print(error!)
                 return
             }
             
             self.tweets.append(tweet)
+            view.collectionView.reloadData()
         }
     }
     
@@ -89,12 +91,13 @@ extension FeedViewController: UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        5
+        tweets.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tweetCellIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tweetCellIdentifier, for: indexPath) as! TweetCell
+        cell.tweet = tweets[indexPath.row]
         return cell
     }
 }
@@ -110,6 +113,6 @@ extension FeedViewController: UICollectionViewDelegate
 extension FeedViewController: UICollectionViewDelegateFlowLayout
 {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: view.frame.width, height: 200)
+        CGSize(width: view.frame.width, height: 100)
     }
 }
